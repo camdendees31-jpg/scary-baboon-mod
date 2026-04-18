@@ -1,27 +1,19 @@
 #pragma once
-#include "UnityEngine/MonoBehaviour.hpp"
-#include "UnityEngine/GameObject.hpp"
-#include "UnityEngine/UI/Toggle.hpp"
-#include "UnityEngine/UI/Slider.hpp"
-#include "UnityEngine/UI/Text.hpp"
 #include <functional>
 
 struct ModFeatures {
-    bool  godMode        = false;
-    bool  noClip         = false;
-    bool  infiniteJump   = false;
-    float speedMult      = 1.0f;
-    float jumpHeightMult = 1.0f;
-    bool  infiniteLives  = false;
-    bool  freezeTimer    = false;
-    float timeScale      = 1.0f;
-    bool  autoWin        = false;
-    bool  espEnabled     = false;
-    bool  wireframe      = false;
-    bool  thirdPerson    = false;
-    float fovOverride    = 90.0f;
-    bool  unlockAll      = false;
-    bool  silentAim      = false;
+    bool godMode = false;
+    bool noClip = false;
+    bool infiniteJump = false;
+    float speedMult = 1.0f;
+    bool infiniteLives = false;
+    bool freezeTimer = false;
+    float timeScale = 1.0f;
+    bool autoWin = false;
+    bool espEnabled = false;
+    bool thirdPerson = false;
+    float fovOverride = 90.0f;
+    bool unlockAll = false;
     float scoreMultiplier = 1.0f;
 };
 
@@ -32,12 +24,10 @@ namespace ScaryBaboonMod {
     public:
         static MenuController* instance;
         static MenuController* GetInstance();
-
-        UnityEngine::GameObject* menuRoot = nullptr;
+        void* menuRoot = nullptr;
         bool isVisible = false;
         float yHoldTimer = 0.0f;
         static constexpr float HOLD_THRESHOLD = 0.6f;
-
         void Awake();
         void Update();
         void BuildMenu();
