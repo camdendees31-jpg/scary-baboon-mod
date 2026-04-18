@@ -14,9 +14,7 @@
   },
   "workspace": {
     "scripts": {
-      "build": [
-        "pwsh ./build.ps1"
-      ]
+      "build": ["pwsh ./build.ps1"]
     },
     "qmodIncludeDirs": [],
     "qmodIncludeFiles": [],
@@ -41,6 +39,11 @@
     {
       "id": "libil2cpp",
       "versionRange": "^0.3.2",
+      "additionalData": {}
+    },
+    {
+      "id": "custom-types",
+      "versionRange": "^0.10.0",
       "additionalData": {}
     }
   ]
