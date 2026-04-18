@@ -23,9 +23,14 @@ jobs:
       - name: QPM Restore
         run: qpm restore
 
-      - name: Debug headers
-        run: find extern -type f -name "*.hpp" | head -50
-        continue-on-error: true
+      - name: List generated files
+        run: |
+          ls -la
+          echo "---"
+          ls extern/ | head -20
+          echo "---"
+          cat qpm_defines.cmake 2>/dev/null || echo "NO qpm_defines.cmake"
+          cat extern.cmake 2>/dev/null || echo "NO extern.cmake"
 
       - name: Setup NDK
         run: |
