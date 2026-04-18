@@ -4,6 +4,7 @@
 #include "UnityEngine/SceneManagement/SceneManager.hpp"
 #include "UnityEngine/SceneManagement/Scene.hpp"
 #include "UnityEngine/GameObject.hpp"
+#include "UnityEngine/Object.hpp"
 
 MAKE_HOOK_MATCH(
     SceneManager_ActiveSceneChanged,
@@ -15,20 +16,16 @@ MAKE_HOOK_MATCH(
     SceneManager_ActiveSceneChanged(prev, next);
     auto* host = UnityEngine::GameObject::New_ctor(StringW("SBModMenuHost"));
     UnityEngine::Object::DontDestroyOnLoad(host);
-    Paper::Logger::info("Mod menu spawned in scene: {}", std::string(next.get_name()));
 }
 
 extern "C" __attribute__((visibility("default")))
 void setup(CModInfo* info) {
-    info->id      = "scary-baboon-mod";
+    info->id = "scary-baboon-mod";
     info->version = "0.1.0";
     info->version_long = 0;
-    Paper::Logger::info("Setup called");
 }
 
 extern "C" __attribute__((visibility("default")))
 void load() {
-    Paper::Logger::info("Load called");
     INSTALL_HOOK(Logger, SceneManager_ActiveSceneChanged);
-    Paper::Logger::info("Hooks installed");
 }
