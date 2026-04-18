@@ -17,6 +17,7 @@ add_library(${COMPILE_ID} SHARED ${SOURCE_FILES})
 
 target_include_directories(${COMPILE_ID} PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}/src
+    ${EXTERN_DIR}
     ${EXTERN_DIR}/beatsaber-hook/shared
     ${EXTERN_DIR}/beatsaber-hook/shared/utils
     ${EXTERN_DIR}/scotland2/shared
