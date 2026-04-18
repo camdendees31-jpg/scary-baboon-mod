@@ -8,20 +8,17 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 set(COMPILE_ID scary-baboon-mod)
 set(EXTERN_DIR ${CMAKE_CURRENT_SOURCE_DIR}/extern)
 
-# ── QPM extern cmake includes ──────────────────────────────────────────────
-include(${EXTERN_DIR}/beatsaber-hook/cmake/beatsaber-hook.cmake OPTIONAL)
-
-# ── Collect source files ───────────────────────────────────────────────────
 file(GLOB_RECURSE SOURCE_FILES
-    src/*.cpp
-    src/**/*.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/**/*.cpp
 )
+
+message(STATUS "Source files: ${SOURCE_FILES}")
 
 add_library(${COMPILE_ID} SHARED ${SOURCE_FILES})
 
-# ── Include directories ────────────────────────────────────────────────────
 target_include_directories(${COMPILE_ID} PRIVATE
-    src
+    ${CMAKE_CURRENT_SOURCE_DIR}/src
     ${EXTERN_DIR}/beatsaber-hook/shared
     ${EXTERN_DIR}/scotland2/shared
     ${EXTERN_DIR}/paper/shared
@@ -30,7 +27,6 @@ target_include_directories(${COMPILE_ID} PRIVATE
     ${EXTERN_DIR}/libil2cpp/il2cpp
 )
 
-# ── Link libraries ─────────────────────────────────────────────────────────
 target_link_libraries(${COMPILE_ID}
     -llog
     -lz
@@ -40,12 +36,10 @@ target_link_libraries(${COMPILE_ID}
     ${EXTERN_DIR}/libs/libpaperlog.so
 )
 
-# ── Compiler flags ─────────────────────────────────────────────────────────
 target_compile_options(${COMPILE_ID} PRIVATE
     -O2
     -fPIC
     -fvisibility=hidden
-    -DUNITY_2021
     -DANDROID
 )
 
