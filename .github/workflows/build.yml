@@ -15,7 +15,7 @@ jobs:
 
       - name: Install QPM
         run: |
-          wget https://github.com/QuestPackageManager/QPM.CLI/releases/latest/download/qpm-linux-x64 -O qpm
+          wget https://github.com/QuestPackageManager/QPM.CLI/releases/download/v1.5.8/qpm-linux-x64 -O qpm
           chmod +x qpm
           sudo mv qpm /usr/local/bin/qpm
 
