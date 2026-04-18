@@ -1,0 +1,47 @@
+{
+  "version": "0.1.0",
+  "sharedDir": "shared",
+  "dependenciesDir": "extern",
+  "info": {
+    "name": "ScaryBaboonMod",
+    "id": "scary-baboon-mod",
+    "version": "0.1.0",
+    "url": null,
+    "additionalData": {
+      "cmake": true,
+      "soLink": ""
+    }
+  },
+  "workspace": {
+    "scripts": {
+      "build": [
+        "pwsh ./build.ps1"
+      ]
+    },
+    "qmodIncludeDirs": [],
+    "qmodIncludeFiles": [],
+    "qmodOutput": "scary-baboon-mod.qmod"
+  },
+  "dependencies": [
+    {
+      "id": "beatsaber-hook",
+      "versionRange": "^5.1.9",
+      "additionalData": {}
+    },
+    {
+      "id": "scotland2",
+      "versionRange": "^0.1.7",
+      "additionalData": {}
+    },
+    {
+      "id": "paper",
+      "versionRange": "^3.7.0",
+      "additionalData": {}
+    },
+    {
+      "id": "libil2cpp",
+      "versionRange": "^0.3.2",
+      "additionalData": {}
+    }
+  ]
+}
