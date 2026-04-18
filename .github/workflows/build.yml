@@ -1,0 +1,50 @@
+name: Build Scary Baboon Mod
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Install QPM
+        run: |
+          wget https://github.com/QuestPackageManager/QPM.CLI/releases/latest/download/qpm-linux-x64 -O qpm
+          chmod +x qpm
+          sudo mv qpm /usr/local/bin/qpm
+
+      - name: QPM Restore
+        run: qpm restore
+
+      - name: Install NDK
+        run: |
+          wget https://dl.google.com/android/repository/android-ndk-r26d-linux.zip -q
+          unzip -q android-ndk-r26d-linux.zip
+          echo "NDK_PATH=$PWD/android-ndk-r26d" >> $GITHUB_ENV
+
+      - name: Install Ninja
+        run: sudo apt-get install -y ninja-build
+
+      - name: Build
+        run: |
+          mkdir build && cd build
+          cmake .. \
+            -DCMAKE_BUILD_TYPE=Release \
+            -DCMAKE_TOOLCHAIN_FILE=${{ env.NDK_PATH }}/build/cmake/android.toolchain.cmake \
+            -DANDROID_ABI=arm64-v8a \
+            -DANDROID_PLATFORM=android-31 \
+            -DANDROID_STL=c++_static \
+            -GNinja
+          ninja
+
+      - name: Upload .so
+        uses: actions/upload-artifact@v3
+        with:
+          name: libscary-baboon-mod
+          path: build/libscary-baboon-mod.so
