@@ -11,25 +11,25 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Install QPM
         run: |
-          wget https://github.com/QuestPackageManager/QPM.CLI/releases/download/v1.5.8/qpm-linux-x64 -O qpm
+          curl -Lo qpm https://github.com/QuestPackageManager/QPM.CLI/releases/download/v1.5.9/qpm-linux-x64
           chmod +x qpm
           sudo mv qpm /usr/local/bin/qpm
 
       - name: QPM Restore
         run: qpm restore
 
-      - name: Install NDK
+      - name: Setup NDK
         run: |
-          wget https://dl.google.com/android/repository/android-ndk-r26d-linux.zip -q
-          unzip -q android-ndk-r26d-linux.zip
-          echo "NDK_PATH=$PWD/android-ndk-r26d" >> $GITHUB_ENV
+          qpm ndk resolve -d
+          NDK=$(qpm ndk list | grep -o '/[^ ]*android-ndk[^ ]*' | head -1)
+          echo "NDK_PATH=$NDK" >> $GITHUB_ENV
 
-      - name: Install Ninja
-        run: sudo apt-get install -y ninja-build
+      - name: Install Ninja & CMake
+        run: sudo apt-get install -y ninja-build cmake
 
       - name: Build
         run: |
