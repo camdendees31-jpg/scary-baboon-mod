@@ -1,6 +1,5 @@
 #pragma once
-#include "UnityEngine/MonoBehaviour.hpp"
-#include "UnityEngine/GameObject.hpp"
+#include "beatsaber-hook/shared/utils/il2cpp-utils.hpp"
 #include <functional>
 
 struct ModFeatures {
@@ -26,7 +25,7 @@ namespace ScaryBaboonMod {
     public:
         static MenuController* instance;
         static MenuController* GetInstance();
-        UnityEngine::GameObject* menuRoot = nullptr;
+        Il2CppObject* menuRoot = nullptr;
         bool isVisible = false;
         float yHoldTimer = 0.0f;
         static constexpr float HOLD_THRESHOLD = 0.6f;
