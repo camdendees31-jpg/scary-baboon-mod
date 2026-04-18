@@ -1,6 +1,6 @@
 #pragma once
 #include "logger.hpp"
-#include "beatsaber-hook/shared/utils/hooking.hpp"
-#include "beatsaber-hook/shared/utils/il2cpp-utils.hpp"
+#include "hooking.hpp"
+#include "il2cpp-utils.hpp"
 
 static constexpr auto Logger = Paper::ConstLoggerContext("scary-baboon-mod");
