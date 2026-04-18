@@ -25,6 +25,7 @@ jobs:
 
       - name: Debug headers
         run: find extern -type f -name "*.hpp" | head -50
+        continue-on-error: true
 
       - name: Setup NDK
         run: |
