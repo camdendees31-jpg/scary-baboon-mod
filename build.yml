@@ -24,7 +24,7 @@ jobs:
         run: qpm restore
 
       - name: Debug headers
-        run: find extern -name "*.hpp" | head -40
+        run: find extern -type f -name "*.hpp" | head -50
 
       - name: Setup NDK
         run: |
