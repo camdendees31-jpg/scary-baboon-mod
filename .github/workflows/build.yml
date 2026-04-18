@@ -15,9 +15,11 @@ jobs:
 
       - name: Install QPM
         run: |
-          curl -Lo qpm https://github.com/QuestPackageManager/QPM.CLI/releases/download/v1.5.9/qpm-linux-x64
+          curl -Lo qpm.zip https://github.com/QuestPackageManager/QPM.CLI/releases/download/v1.5.9/qpm-ubuntu-22.zip
+          unzip qpm.zip
           chmod +x qpm
           sudo mv qpm /usr/local/bin/qpm
+          qpm --version
 
       - name: QPM Restore
         run: qpm restore
@@ -25,8 +27,9 @@ jobs:
       - name: Setup NDK
         run: |
           qpm ndk resolve -d
-          NDK=$(qpm ndk list | grep -o '/[^ ]*android-ndk[^ ]*' | head -1)
+          NDK=$(find ~/.local -name "android.toolchain.cmake" 2>/dev/null | head -1 | xargs dirname | xargs dirname | xargs dirname)
           echo "NDK_PATH=$NDK" >> $GITHUB_ENV
+          echo "Found NDK at $NDK"
 
       - name: Install Ninja & CMake
         run: sudo apt-get install -y ninja-build cmake
