@@ -1,5 +1,5 @@
 #pragma once
-#include "paper/shared/logger.hpp"
+#include "logger.hpp"
 #include "beatsaber-hook/shared/utils/hooking.hpp"
 #include "beatsaber-hook/shared/utils/il2cpp-utils.hpp"
 
