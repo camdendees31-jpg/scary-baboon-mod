@@ -1,5 +1,5 @@
 #pragma once
-#include "utils/il2cpp-utils.hpp"
+#include "beatsaber-hook/shared/utils/il2cpp-utils.hpp"
 #include <functional>
 
 struct ModFeatures {
