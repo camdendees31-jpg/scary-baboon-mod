@@ -11,25 +11,29 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Install QPM
         run: |
-          wget https://github.com/QuestPackageManager/QPM.CLI/releases/latest/download/qpm-linux-x64 -O qpm
+          curl -Lo qpm.zip https://github.com/QuestPackageManager/QPM.CLI/releases/download/v1.5.9/qpm-linux-x64.zip
+          unzip qpm.zip
           chmod +x qpm
           sudo mv qpm /usr/local/bin/qpm
 
       - name: QPM Restore
         run: qpm restore
 
-      - name: Install NDK
+      - name: Debug headers
+        run: find extern -name "*.hpp" | head -40
+
+      - name: Setup NDK
         run: |
           wget https://dl.google.com/android/repository/android-ndk-r26d-linux.zip -q
           unzip -q android-ndk-r26d-linux.zip
           echo "NDK_PATH=$PWD/android-ndk-r26d" >> $GITHUB_ENV
 
-      - name: Install Ninja
-        run: sudo apt-get install -y ninja-build
+      - name: Install Ninja & CMake
+        run: sudo apt-get install -y ninja-build cmake
 
       - name: Build
         run: |
@@ -44,7 +48,7 @@ jobs:
           ninja
 
       - name: Upload .so
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: libscary-baboon-mod
           path: build/libscary-baboon-mod.so
