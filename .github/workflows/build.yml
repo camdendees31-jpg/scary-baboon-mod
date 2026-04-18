@@ -15,7 +15,7 @@ jobs:
 
       - name: Install QPM
         run: |
-          curl -Lo qpm.zip https://github.com/QuestPackageManager/QPM.CLI/releases/download/v1.5.9/qpm-ubuntu-22.zip
+          curl -Lo qpm.zip https://github.com/QuestPackageManager/QPM.CLI/releases/download/v1.5.9/qpm-linux-x64.zip
           unzip qpm.zip
           chmod +x qpm
           sudo mv qpm /usr/local/bin/qpm
@@ -27,7 +27,7 @@ jobs:
       - name: Setup NDK
         run: |
           qpm ndk resolve -d
-          NDK=$(find ~/.local -name "android.toolchain.cmake" 2>/dev/null | head -1 | xargs dirname | xargs dirname | xargs dirname)
+          NDK=$(find ~ -name "android.toolchain.cmake" 2>/dev/null | head -1 | xargs dirname | xargs dirname | xargs dirname)
           echo "NDK_PATH=$NDK" >> $GITHUB_ENV
           echo "Found NDK at $NDK"
 
