@@ -40,11 +40,6 @@
       "id": "libil2cpp",
       "versionRange": "^0.3.2",
       "additionalData": {}
-    },
-    {
-      "id": "custom-types",
-      "versionRange": "^0.10.0",
-      "additionalData": {}
     }
   ]
 }
