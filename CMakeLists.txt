@@ -3,8 +3,6 @@ project(scary-baboon-mod)
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED 20)
-set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
-
 set(COMPILE_ID scary-baboon-mod)
 set(EXTERN_DIR ${CMAKE_CURRENT_SOURCE_DIR}/extern)
 
@@ -20,6 +18,7 @@ add_library(${COMPILE_ID} SHARED ${SOURCE_FILES})
 target_include_directories(${COMPILE_ID} PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}/src
     ${EXTERN_DIR}/beatsaber-hook/shared
+    ${EXTERN_DIR}/beatsaber-hook/shared/utils
     ${EXTERN_DIR}/scotland2/shared
     ${EXTERN_DIR}/paper/shared
     ${EXTERN_DIR}/paper/shared/utfcpp/source
@@ -31,9 +30,6 @@ target_link_libraries(${COMPILE_ID}
     -llog
     -lz
     -landroid
-    ${EXTERN_DIR}/libs/libbeatsaber-hook_5_1_9.so
-    ${EXTERN_DIR}/libs/libsl2.so
-    ${EXTERN_DIR}/libs/libpaperlog.so
 )
 
 target_compile_options(${COMPILE_ID} PRIVATE
